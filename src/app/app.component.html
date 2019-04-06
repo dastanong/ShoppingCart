@@ -1,10 +1,20 @@
+
+
+<div id="header">
+  <div id="topHeader">
+    <img class="logoSize" src="{{ logoImg }}">
+    <ul>
+      <li><a id="myCart" href="">My Cart</a></li>
+    </ul>
+  </div>
+</div>
+
 <h1>{{ title }}</h1>
+
+
 
 <ul>
   <li *ngFor="let tasks of getTaskList" [class.completed]="taskList[tasks]" (click)="clickTask(tasks)">
     {{ tasks }}
   </li>
 </ul>
-
-<button (click)="addTask()">Add Task</button>
-<button (click)="clearTask()">Clear Task</button>
