@@ -83,10 +83,22 @@ export class AppComponent {
         image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c05962448.png"
     }
 ]
-
+   
   productList = Object.keys(this.allProducts)
 
+  cartList = []
+
+  show : boolean = false
   
+  displayList() {
+    this.show = true
+  }
+
+  displayCart(cartList) {
+    if (cartList == []) {
+        console.log("Cart is empty!")
+    }
+  }
 
 }
 

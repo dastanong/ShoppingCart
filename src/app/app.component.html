@@ -2,19 +2,40 @@
 
 <div id="header">
   <div id="topHeader">
-    <img class="logoSize" src="{{ logoImg }}">
+    <img class="logoSize" src="{{ logoImg }}" (click)="displayList()">
     <ul>
-      <li><a id="myCart" href="">My Cart</a></li>
+        <li><button><a id="myCart" href="">My Cart</a></button></li>
     </ul>
   </div>
 </div>
 
-<h1>{{ title }}</h1>
-
-
-
-<ul>
-  <li *ngFor="let tasks of getTaskList" [class.completed]="taskList[tasks]" (click)="clickTask(tasks)">
-    {{ tasks }}
-  </li>
-</ul>
+<div class="container">
+  <h1>{{ title }}</h1>
+  <div class="line"></div>
+    
+      <div class="productBox" *ngFor="let allProduct of allProducts" [hidden]="!show">
+        <div class="details">
+          <div class="productDesc">
+            <div class="imgBox">
+              <img id="productImg" src="{{ allProduct.image }}">
+            </div>
+            <div class="descBox">
+              <p>Item Id : {{ allProduct.id }}</p>
+              <label>Description : </label>
+              <p>{{ allProduct.description }}</p>
+            </div>
+          </div>
+          <div class="line"></div>
+        </div>
+        <div class="qtySection">
+          <div class="quantity">
+            
+          </div>
+          <div class="price">
+            <label>Price : RM {{ allProduct.price }}</label>
+          </div>
+        </div>
+        <div class="line2"></div>
+      </div>
+   
+</div>

@@ -1,3 +1,7 @@
+h1 {
+    color: #283747;
+}
+
 #header {
     width: 100%;
     background-color: steelblue;
@@ -10,15 +14,20 @@
     margin-right: 20%;
 }
 
+#logoImg {
+    width: 20%;
+}
+
 .logoSize {
     height: 10vh;
     width: 10vw;
     margin-top: 0.5%;
+    cursor: pointer;
 }
 
 #myCart {
     text-decoration: none;
-    color: white;
+    color: black;
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     letter-spacing: 1px;
@@ -31,4 +40,56 @@
 
 #topHeader ul li {
     list-style: none;
+}
+
+.container {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.show {
+    visibility: visible;
+}
+
+.line {
+    border-bottom: 1px solid #D7D7D7;
+    margin-bottom: 1vh;
+}
+
+.line2 {
+    box-shadow: 0 10px 10px -10px #8c8b8b;
+    border: 0;
+    height: 4vh;
+    margin-bottom: 3vh;
+}
+
+.productBox {
+    display: inline-block;
+}
+
+.productDesc {
+    width: 100%;
+    display: flex;
+}
+
+.imgBox {
+    width: 50%;
+}
+
+.descBox {
+    width: 50%;
+}
+
+#productImg {
+    width: 20vw;
+    height: 30vh;
+}
+
+.price {
+    text-align: right;
+}
+
+.qtySection {
+    height: 3vh;
+    
 }
