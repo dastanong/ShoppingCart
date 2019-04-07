@@ -30,11 +30,16 @@
           <div class="line"></div>
         </div>
         <div class="qtySection">
-          <div class="quantity">
+          <div>
+              <button (click)="checkprdId(allProduct.id)" [hidden]="!hideSelect" 
+              *ngIf="allProduct.selected == false" [style.background-color]="">Select</button>
+          </div>
+          <div class="quantity" *ngIf="allProduct.selected == true">
             <button class="btnQty" (click)="minusQuantity()">-</button>
             <label id="quantity">Quantity : {{ quantity }}</label>
-            <button class="btnQty" (click)="addQuantity(allProduct[i])">+</button>
+            <button class="btnQty" (click)="addQuantity()">+</button>
           </div>
+          <button (click)="cancelSelect(allProduct.id)" *ngIf="allProduct.selected == true">Cancel</button>
           <div class="price">
             <label>Price : RM {{ allProduct.price }}</label>
           </div>
