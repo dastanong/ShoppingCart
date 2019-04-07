@@ -4,16 +4,18 @@
   <div id="topHeader">
     <img class="logoSize" src="{{ logoImg }}" (click)="displayList()">
     <ul>
-        <li><button><a id="myCart" href="">My Cart</a></button></li>
+        <li><button id="myCart" (click)="displayCart()">My Cart</button></li>
     </ul>
   </div>
 </div>
 
 <div class="container">
-  <h1>{{ title }}</h1>
+  <h1>Welcome to Dell ~~</h1>
+  <h2 [hidden]="!showProduct">{{ pdPagetitle }}</h2>
+  <h2 [hidden]="!showCart">{{ cartPagetitle }}</h2>
   <div class="line"></div>
     
-      <div class="productBox" *ngFor="let allProduct of allProducts" [hidden]="!show">
+      <div class="productBox" *ngFor="let allProduct of allProducts; let i = index" [hidden]="!showProduct">
         <div class="details">
           <div class="productDesc">
             <div class="imgBox">
@@ -29,7 +31,9 @@
         </div>
         <div class="qtySection">
           <div class="quantity">
-            
+            <button class="btnQty" (click)="minusQuantity()">-</button>
+            <label id="quantity">Quantity : {{ quantity }}</label>
+            <button class="btnQty" (click)="addQuantity(allProduct[i])">+</button>
           </div>
           <div class="price">
             <label>Price : RM {{ allProduct.price }}</label>
@@ -37,5 +41,9 @@
         </div>
         <div class="line2"></div>
       </div>
-   
+
+  <div id="cartPage" [hidden]="!showCart">
+
+  </div>
+
 </div>

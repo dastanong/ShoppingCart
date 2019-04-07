@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Available Product';
+  pdPagetitle = 'Available Product';
+  cartPagetitle = 'My Cart';
   logoImg = 'https://www.mysmartgroup.co.uk/wp-content/uploads/2017/12/1-2-dell-logo-3d-white-png.png'
 
   allProducts = [
@@ -83,21 +85,50 @@ export class AppComponent {
         image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c05962448.png"
     }
 ]
-   
+
   productList = Object.keys(this.allProducts)
 
   cartList = []
+  quantity = 0
+  currentQty = 0
+  maxQty = 10
+  showProduct : boolean = false
+  showCart : boolean = false
 
-  show : boolean = false
-  
   displayList() {
-    this.show = true
+    this.showProduct = true
+    console.log(this.showProduct)
+    if(this.showProduct = true) {
+        this.showCart = false
+        console.log(this.showCart)
+    }
   }
 
-  displayCart(cartList) {
-    if (cartList == []) {
-        console.log("Cart is empty!")
+  displayCart() {
+    this.showCart = true
+    console.log(this.showCart)
+    if(this.showCart = true) {
+        this.showProduct = false
+        console.log(this.showProduct)
     }
+  }
+
+  addQuantity() {
+    if(this.currentQty == 0 || this.currentQty < this.maxQty) {
+        this.quantity++
+        this.currentQty = this.quantity
+        //return this.currentQty
+        console.log(this.currentQty)
+    }
+  }
+
+  minusQuantity() {
+      if(this.currentQty > 0) {
+          this.quantity--
+          this.currentQty = this.quantity
+          return this.currentQty
+          //console.log(this.currentQty)
+      }
   }
 
 }

@@ -91,5 +91,25 @@ h1 {
 
 .qtySection {
     height: 3vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#quantity {
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.btnQty {
     
+}
+
+.price label {
+    margin-left: 5vw;
+}
+
+#cartPage {
+    width: 100%;
+    height: 30vh;
+    background-color: lightsteelblue
 }
