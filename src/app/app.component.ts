@@ -96,10 +96,11 @@ export class AppComponent {
         selected: false
     }
 ]
+  cartList = []
 
   productList = Object.keys(this.allProducts)
+  cart = Object.keys(this.cartList)
 
-  cartList = []
   quantity = 0
   currentQty = 0
   maxQty = 10
@@ -159,18 +160,31 @@ export class AppComponent {
         }
     }
 
+    selectedColor(index: number): string {
+        if(index == this.allProducts[index].id && this.allProducts[index].selected == true) {
+            return "#DDDDDF"
+        }
+    }
+
     cancelSelect(index: number) {
         if(index == this.allProducts[index].id && this.allProducts[index].selected == true) {
             this.allProducts[index].selected = false
             this.showQty = false
             this.hideSelect = true
+            this.quantity = 0
             console.log("Unselected")
         }
     }
 
     addToCart(index: number) {
-        if(index == this.allProducts[index].id && this.allProducts[index].selected == true) {
-        
+        if(index == this.allProducts[index].id && this.allProducts[index].selected == true && this.quantity > 0) {
+            this.cartList = [
+                this.allProducts[index].id,
+                this.allProducts[index].image,
+                this.allProducts[index].description,
+                this.allProducts[index].price
+            ]
+            console.log(this.cartList)
         }
     }
 

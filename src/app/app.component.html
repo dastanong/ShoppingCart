@@ -1,5 +1,4 @@
 
-
 <div id="header">
   <div id="topHeader">
     <img class="logoSize" src="{{ logoImg }}" (click)="displayList()">
@@ -15,7 +14,8 @@
   <h2 [hidden]="!showCart">{{ cartPagetitle }}</h2>
   <div class="line"></div>
     
-      <div class="productBox" *ngFor="let allProduct of allProducts; let i = index" [hidden]="!showProduct">
+      <div class="productBox" *ngFor="let allProduct of allProducts; let i = index" [hidden]="!showProduct" 
+      [style.background-color]="selectedColor(allProduct.id)">
         <div class="details">
           <div class="productDesc">
             <div class="imgBox">
@@ -32,14 +32,16 @@
         <div class="qtySection">
           <div>
               <button (click)="checkprdId(allProduct.id)" [hidden]="!hideSelect" 
-              *ngIf="allProduct.selected == false" [style.background-color]="">Select</button>
+              *ngIf="allProduct.selected == false">Select</button>
           </div>
           <div class="quantity" *ngIf="allProduct.selected == true">
             <button class="btnQty" (click)="minusQuantity()">-</button>
             <label id="quantity">Quantity : {{ quantity }}</label>
             <button class="btnQty" (click)="addQuantity()">+</button>
           </div>
-          <button (click)="cancelSelect(allProduct.id)" *ngIf="allProduct.selected == true">Cancel</button>
+          <div id="cancel">
+            <button (click)="cancelSelect(allProduct.id)" *ngIf="allProduct.selected == true">Cancel</button>
+          </div>
           <div class="price">
             <label>Price : RM {{ allProduct.price }}</label>
           </div>
@@ -50,5 +52,12 @@
   <div id="cartPage" [hidden]="!showCart">
 
   </div>
-
 </div>
+
+<footer>
+  <div id="btm">
+    <div id="boxAtc">
+        <button>Add to Cart</button>
+    </div>
+  </div>
+</footer>
