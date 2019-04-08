@@ -192,8 +192,8 @@ export class AppComponent {
     }
 
     addToCart(index: number){
-        if(this.allCarts == [] && this.allProducts[index].selected == true) {
-            this.allCarts = [
+        if(this.allProducts[index].selected == true) {
+            this.allCarts.push(
                 {
                     id: this.allProducts[index].id,
                     image: this.allProducts[index].image,
@@ -201,12 +201,11 @@ export class AppComponent {
                     price: this.allProducts[index].price,
                     currentQty: this.allProducts[index].currentQty
                 },
-            ]
+            )
             console.log(this.allCarts)
             alert("Item added to Cart. Please Click on My Cart to view your item.")
         }
     }
-
 
 
 }
