@@ -113,7 +113,7 @@ h1 {
 #cartPage {
     width: 100%;
     height: 30vh;
-    background-color: lightsteelblue
+    /* background-color: lightsteelblue */
 }
 
 #btm {
@@ -121,6 +121,7 @@ h1 {
     width: 100%;
     background-color: rgb(34, 128, 216);
     bottom: 0;
+    right: 0;
     position: fixed;
 }
 

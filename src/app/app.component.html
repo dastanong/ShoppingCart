@@ -31,13 +31,12 @@
         </div>
         <div class="qtySection">
           <div>
-              <button (click)="checkprdId(allProduct.id)" [hidden]="!hideSelect" 
-              *ngIf="allProduct.selected == false">Select</button>
+              <button (click)="checkprdId(allProduct.id)" [hidden]="!hideSelect">Select</button>
           </div>
           <div class="quantity" *ngIf="allProduct.selected == true">
-            <button class="btnQty" (click)="minusQuantity()">-</button>
-            <label id="quantity">Quantity : {{ quantity }}</label>
-            <button class="btnQty" (click)="addQuantity()">+</button>
+            <button class="btnQty" (click)="minusQuantity(allProduct.id)">-</button>
+            <label id="quantity">Quantity : {{ allProduct.currentQty }}</label>
+            <button class="btnQty" (click)="addQuantity(allProduct.id)">+</button>
           </div>
           <div id="cancel">
             <button (click)="cancelSelect(allProduct.id)" *ngIf="allProduct.selected == true">Cancel</button>
@@ -47,17 +46,23 @@
           </div>
         </div>
         <div class="line2"></div>
+
+        <div id="btm" *ngIf="allProduct.selected == true">
+          <div id="boxAtc">
+              <button (click)="addToCart(allProduct.id)">Add to Cart</button>
+          </div>
+        </div>
       </div>
 
-  <div id="cartPage" [hidden]="!showCart">
-
-  </div>
-</div>
-
-<footer>
-  <div id="btm">
-    <div id="boxAtc">
-        <button>Add to Cart</button>
+  <div id="cartPage" [hidden]="!showCart" *ngFor="let allCart of allCarts">
+    <div>
+      {{ allCart.id }}
+      <div class="imgBox">
+        <img id="productImg" src="{{ allCart.image }}">
+      </div>
+      {{ allCart.description }}
+      {{ allCart.price }}
+      {{ allCart.currentQty }}
     </div>
   </div>
-</footer>
+</div>
