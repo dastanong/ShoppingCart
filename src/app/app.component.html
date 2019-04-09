@@ -55,14 +55,22 @@
       </div>
 
   <div id="cartPage" [hidden]="!showCart" *ngFor="let allCart of allCarts">
-    <div>
-      {{ allCart.id }}
-      <div class="imgBox">
-        <img id="productImg" src="{{ allCart.image }}">
+      <div class="productDesc">
+        <div class="imgBox">
+          <img id="productImg" src="{{ allCart.image }}">
+        </div>
+        <div class="descBox">
+            <p>Item Id : {{ allCart.id }}</p>
+            <label>Description : </label>
+            <p>{{ allCart.description }}</p>
+        </div>
       </div>
-      {{ allCart.description }}
-      {{ allCart.price }}
-      {{ allCart.currentQty }}
-    </div>
+      <div class="line"></div>
+      <div class="prdPrice">
+          <label>RM {{ allCart.price }} (Per Unit)</label>
+          <label>Total Quantity : {{ allCart.currentQty }}</label>
+          <label>Total Price : RM {{ allCart.price*allCart.currentQty }}</label>
+      </div>
+    <div class="line2"></div>
   </div>
 </div>

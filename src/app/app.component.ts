@@ -192,7 +192,7 @@ export class AppComponent {
     }
 
     addToCart(index: number){
-        if(this.allProducts[index].selected == true) {
+        if(this.allProducts[index].selected == true && this.quantity > 0) {
             this.allCarts.push(
                 {
                     id: this.allProducts[index].id,
@@ -204,6 +204,14 @@ export class AppComponent {
             )
             console.log(this.allCarts)
             alert("Item added to Cart. Please Click on My Cart to view your item.")
+            this.allProducts[index].selected = false
+            if(this.allProducts[index].selected == false) {
+                this.showQty = false
+                this.hideSelect = true
+                this.quantity = 0
+            }
+        } else {
+            alert("Please select at least 1 quantity for the item.")
         }
     }
 
