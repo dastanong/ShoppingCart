@@ -29,10 +29,11 @@ h1 {
 
 #myCart {
     text-decoration: none;
-    color: black;
+    color: white;
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 #topHeader ul {
@@ -61,7 +62,7 @@ h1 {
 }
 
 .line2 {
-    box-shadow: 0 10px 10px -10px #8c8b8b;
+    box-shadow: 0px 10px 10px -10px #8c8b8b;
     border: 0;
     height: 4vh;
     margin-bottom: 3vh;
@@ -117,10 +118,18 @@ h1 {
     width: 100%;
 }
 
+#priceSection {
+    display: inline-flex;
+    transform: translateX(40vw);
+}
+
 .prdPrice {
-    transform: translateX(48vw);
     display: flex;
     flex-direction: column;
+}
+
+#btnRmv {
+    margin-left: 5vw;
 }
 
 #btm {
@@ -139,6 +148,28 @@ h1 {
 }
 
 #boxAtc button {
+    color: black;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#btnCAC {
+    width: 20%;
+    margin-top: 2vh;
+}
+
+#btmCart {
+    height: 8vh;
+    width: 100%;
+    background-color: rgb(34, 128, 216);
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    display: inline-block;
+}
+
+#btnCAC button {
     color: black;
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { all } from 'q';
 
 @Component({
   selector: 'app-root',
@@ -116,6 +115,7 @@ export class AppComponent {
 
   quantity = 0
   maxQty = 10
+  totalPrice = 0
   showProduct : boolean = false
   showCart : boolean = false
   showQty : boolean = false
@@ -143,18 +143,18 @@ export class AppComponent {
         if(index == this.allProducts[index].id && this.allProducts[index].selected == true) {
             if(this.allProducts[index].currentQty == 0 || this.allProducts[index].currentQty < this.maxQty) {
                 this.quantity++
-                this.allProducts[index].currentQty = this.quantity
-                console.log(this.allProducts[index].currentQty)
+                console.log(this.quantity)
+                return this.quantity
             }
         }
     }
 
     minusQuantity(index: number) {
         if(index == this.allProducts[index].id && this.allProducts[index].selected == true) {
-            if(this.allProducts[index].currentQty > 0) {
+            if(this.quantity > 0) {
                 this.quantity--
-                this.allProducts[index].currentQty = this.quantity
-                console.log(this.allProducts[index].currentQty)
+                console.log(this.quantity)
+                return this.quantity
             }
         }
     }
@@ -176,7 +176,7 @@ export class AppComponent {
 
     selectedColor(index: number): string {
         if(index == this.allProducts[index].id && this.allProducts[index].selected == true) {
-            return "#DDDDDF"
+            return "#E7E7E9"
         }
     }
 
@@ -191,17 +191,20 @@ export class AppComponent {
         }
     }
 
-    addToCart(index: number){
+    addToCart(index: number) {
         if(this.allProducts[index].selected == true && this.quantity > 0) {
-            this.allCarts.push(
-                {
-                    id: this.allProducts[index].id,
-                    image: this.allProducts[index].image,
-                    description: this.allProducts[index].description,
-                    price: this.allProducts[index].price,
-                    currentQty: this.allProducts[index].currentQty
-                },
-            )
+            if(index == this.allProducts[index].id) {
+                this.allProducts[index].currentQty = this.quantity
+                this.allCarts.push(
+                    {
+                        id: this.allProducts[index].id,
+                        image: this.allProducts[index].image,
+                        description: this.allProducts[index].description,
+                        price: this.allProducts[index].price,
+                        currentQty: this.allProducts[index].currentQty
+                    },
+                )
+            }
             console.log(this.allCarts)
             alert("Item added to Cart. Please Click on My Cart to view your item.")
             this.allProducts[index].selected = false
@@ -210,11 +213,29 @@ export class AppComponent {
                 this.hideSelect = true
                 this.quantity = 0
             }
+            this.totalPrice = this.totalPrice + (this.allProducts[index].currentQty*this.allProducts[index].price)
         } else {
             alert("Please select at least 1 quantity for the item.")
         }
     }
 
+    clearAllCart(index: number) {
+        for(let i = 0; i < this.allCarts.length; i++) {
+            index = this.allCarts[i].id
+            this.allCarts[index].currentQty = 0
+            this.allProducts[index].currentQty = this.allCarts[index].currentQty
+            this.totalPrice = 0
+        }
+        this.allCarts = []
+    }
+
+    removeItem(index: number) {
+        if(index == this.allCarts[index].id && this.allCarts[index].currentQty > 0) {
+            this.totalPrice = this.totalPrice - (this.allCarts[index].currentQty*this.allCarts[index].price)
+            this.allCarts[index].currentQty = 0
+            this.allProducts[index].currentQty = this.allCarts[index].currentQty
+        }
+    }
 
 }
 

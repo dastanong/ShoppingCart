@@ -3,7 +3,7 @@
   <div id="topHeader">
     <img class="logoSize" src="{{ logoImg }}" (click)="displayList()">
     <ul>
-        <li><button id="myCart" (click)="displayCart()">My Cart</button></li>
+        <li><a id="myCart" (click)="displayCart()">My Cart</a></li>
     </ul>
   </div>
 </div>
@@ -14,35 +14,37 @@
   <h2 [hidden]="!showCart">{{ cartPagetitle }}</h2>
   <div class="line"></div>
     
-      <div class="productBox" *ngFor="let allProduct of allProducts; let i = index" [hidden]="!showProduct" 
+      <div class="productBox" *ngFor="let allProduct of allProducts" [hidden]="!showProduct" 
       [style.background-color]="selectedColor(allProduct.id)">
-        <div class="details">
-          <div class="productDesc">
-            <div class="imgBox">
-              <img id="productImg" src="{{ allProduct.image }}">
+        <div *ngIf="allProduct.currentQty == 0">
+          <div class="details">
+            <div class="productDesc">
+              <div class="imgBox">
+                <img id="productImg" src="{{ allProduct.image }}">
+              </div>
+              <div class="descBox">
+                <p>Item Id : {{ allProduct.id }}</p>
+                <label>Description : </label>
+                <p>{{ allProduct.description }}</p>
+              </div>
             </div>
-            <div class="descBox">
-              <p>Item Id : {{ allProduct.id }}</p>
-              <label>Description : </label>
-              <p>{{ allProduct.description }}</p>
+            <div class="line"></div>
+          </div>
+          <div class="qtySection">
+            <div>
+                <button (click)="checkprdId(allProduct.id)" [hidden]="!hideSelect">Select</button>
             </div>
-          </div>
-          <div class="line"></div>
-        </div>
-        <div class="qtySection">
-          <div>
-              <button (click)="checkprdId(allProduct.id)" [hidden]="!hideSelect">Select</button>
-          </div>
-          <div class="quantity" *ngIf="allProduct.selected == true">
-            <button class="btnQty" (click)="minusQuantity(allProduct.id)">-</button>
-            <label id="quantity">Quantity : {{ allProduct.currentQty }}</label>
-            <button class="btnQty" (click)="addQuantity(allProduct.id)">+</button>
-          </div>
-          <div id="cancel">
-            <button (click)="cancelSelect(allProduct.id)" *ngIf="allProduct.selected == true">Cancel</button>
-          </div>
-          <div class="price">
-            <label>Price : RM {{ allProduct.price }}</label>
+            <div class="quantity" *ngIf="allProduct.selected == true">
+              <button class="btnQty" (click)="minusQuantity(allProduct.id)">-</button>
+              <label id="quantity">Quantity : {{ quantity }}</label>
+              <button class="btnQty" (click)="addQuantity(allProduct.id)">+</button>
+            </div>
+            <div id="cancel">
+              <button (click)="cancelSelect(allProduct.id)" *ngIf="allProduct.selected == true">Cancel</button>
+            </div>
+            <div class="price">
+              <label>Price : RM {{ allProduct.price }}</label>
+            </div>
           </div>
         </div>
         <div class="line2"></div>
@@ -55,22 +57,40 @@
       </div>
 
   <div id="cartPage" [hidden]="!showCart" *ngFor="let allCart of allCarts">
-      <div class="productDesc">
-        <div class="imgBox">
-          <img id="productImg" src="{{ allCart.image }}">
+      <div *ngIf="allCart.currentQty > 0">
+        <div class="productDesc">
+          <div class="imgBox">
+            <img id="productImg" src="{{ allCart.image }}">
+          </div>
+          <div class="descBox">
+              <p>Item Id : {{ allCart.id }}</p>
+              <label>Description : </label>
+              <p>{{ allCart.description }}</p>
+          </div>
         </div>
-        <div class="descBox">
-            <p>Item Id : {{ allCart.id }}</p>
-            <label>Description : </label>
-            <p>{{ allCart.description }}</p>
+        <div class="line"></div>
+        <div id="priceSection">
+          <div class="prdPrice">
+              <label>RM <b>{{ allCart.price }}</b> (Per Unit)</label>
+              <label>Total Quantity : <b>{{ allCart.currentQty }}</b></label>
+              <label>Total Price : <b>RM {{ allCart.price*allCart.currentQty }}</b></label>
+          </div>
+          <div id="btnRmv">
+            <button (click)="removeItem(allCart.id)">Remove</button>
+          </div>
+        </div>
+      <div class="line2"></div>
+      <div style="height: 8vh;"></div>
+      <div id="btmCart">
+        <div style="margin-left: 70%;">
+            <div id="totalPrice">
+                <label style="color: white">Total Cart Price : <b>RM {{ totalPrice }}</b></label>
+              </div>
+              <div id="btnCAC" *ngIf="showCart == true">
+                  <button (click)="clearAllCart(allCart.id)">Clear cart</button>
+              </div>
         </div>
       </div>
-      <div class="line"></div>
-      <div class="prdPrice">
-          <label>RM {{ allCart.price }} (Per Unit)</label>
-          <label>Total Quantity : {{ allCart.currentQty }}</label>
-          <label>Total Price : RM {{ allCart.price*allCart.currentQty }}</label>
-      </div>
-    <div class="line2"></div>
+    </div>
   </div>
 </div>
